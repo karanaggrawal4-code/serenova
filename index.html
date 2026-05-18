@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Serenova is a calm, interactive stress management website with breathing, journaling, ambient sounds, affirmations, and grounding tips.">
+  <meta name="theme-color" content="#f7f3ea" id="themeColor">
+  <title>serenova | Stress Relief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="logo" href="#home" aria-label="serenova home">serenova</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#stress-test">Stress Test</a>
+        <a href="#breathe">Breathe</a>
+        <a href="#journal">Journal</a>
+        <a href="#sounds">Sounds</a>
+        <a href="#affirmations">Affirmations</a>
+        <a href="#tips">Tips</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+        <span id="themeIcon" aria-hidden="true">☾</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="section-inner hero-inner">
+        <p class="eyebrow reveal-item">Midnight Bloom</p>
+        <h1 class="hero-title reveal-item">What's weighing on you today?</h1>
+        <p class="hero-copy reveal-item">
+          A quiet place to check in, breathe with intention, release heavy thoughts,
+          and return to yourself one small ritual at a time.
+        </p>
+        <div class="hero-actions reveal-item">
+          <a class="btn btn-primary" href="#stress-test">Take the Stress Test</a>
+          <a class="btn btn-secondary" href="#breathe">Start Breathing</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stress-test" aria-labelledby="stress-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Stress Level Analyzer</p>
+          <h2 id="stress-title">Name the weight. Then soften it.</h2>
+        </div>
+
+        <div class="quiz-card glass-card" id="quizCard">
+          <div class="quiz-progress" aria-hidden="true">
+            <div class="progress-meta">
+              <span id="questionCount">Question 1 of 7</span>
+              <span id="progressPercent">14%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="quizProgress"></div>
+            </div>
+          </div>
+
+          <div class="quiz-stage" id="quizStage" aria-live="polite">
+            <h3 id="questionText">How well did you sleep last night?</h3>
+            <div class="quiz-options" id="quizOptions"></div>
+          </div>
+
+          <div class="result-card" id="resultCard" hidden>
+            <div class="result-ring" id="resultRing">
+              <div>
+                <span class="result-score" id="resultScore">0</span>
+                <span class="result-total">/28</span>
+              </div>
+            </div>
+            <div class="meter" aria-hidden="true">
+              <div class="meter-fill" id="meterFill"></div>
+            </div>
+            <p class="result-label" id="resultLabel">CALM</p>
+            <h3 id="resultTitle">You're in a good place. Keep it up.</h3>
+            <p id="resultTip">Protect the quiet: take a slow walk or drink water before the next demand arrives.</p>
+            <button class="btn btn-primary" id="retakeQuiz" type="button">Retake Quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section breathe-section" id="breathe" aria-labelledby="breathe-title">
+      <div class="section-inner split-layout">
+        <div class="section-heading">
+          <p class="eyebrow">Breathing Exercise</p>
+          <h2 id="breathe-title">Let your body set the pace.</h2>
+          <p>
+            Follow a gentle 4-4-6 rhythm. The circle expands, waits, and releases with you.
+          </p>
+        </div>
+
+        <div class="breath-widget glass-card">
+          <div class="breath-circle" id="breathCircle">
+            <span id="breathPhase">Ready</span>
+            <small id="breathCue">Press start</small>
+          </div>
+          <div class="breath-timer">
+            <span>Session</span>
+            <strong id="breathTimer">00:00</strong>
+          </div>
+          <div class="control-row">
+            <button class="btn btn-primary" id="breathStart" type="button">Start</button>
+            <button class="btn btn-secondary" id="breathPause" type="button">Pause</button>
+            <button class="btn btn-ghost" id="breathReset" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journal" aria-labelledby="journal-title">
+      <div class="section-inner">
+        <div class="section-heading centered">
+          <p class="eyebrow">Mood Journal</p>
+          <h2 id="journal-title">Put it down. Let it leave.</h2>
+        </div>
+
+        <div class="journal-card glass-card">
+          <div class="journal-paper" id="journalPaper">
+            <textarea id="journalText" placeholder="Let it out. No one's reading this." spellcheck="true"></textarea>
+            <span class="word-count" id="wordCount">0 words</span>
+            <div class="ember-field" id="emberField" aria-hidden="true"></div>
+          </div>
+          <button class="btn btn-primary release-btn" id="releaseText" type="button">Release</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sounds" aria-labelledby="sounds-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Ambient Sound Player</p>
+          <h2 id="sounds-title">Choose the room your mind needs.</h2>
+        </div>
+
+        <div class="sound-grid">
+          <button class="sound-card glass-card" type="button" data-sound="rain">
+            <span class="sound-icon">🌧️</span>
+            <span class="sound-name">Rain</span>
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </button>
+          <button class="sound-card glass-card" type="button" data-sound="ocean">
+            <span class="sound-icon">🌊</span>
+            <span class="sound-name">Ocean Waves</span>
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </button>
+          <button class="sound-card glass-card" type="button" data-sound="forest">
+            <span class="sound-icon">🌲</span>
+            <span class="sound-name">Forest</span>
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </button>
+        </div>
+
+        <label class="volume-control glass-card" for="volumeSlider">
+          <span>Volume</span>
+          <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.55">
+        </label>
+      </div>
+    </section>
+
+    <section class="section" id="affirmations" aria-labelledby="affirm-title">
+      <div class="section-inner split-layout">
+        <div class="section-heading">
+          <p class="eyebrow">Affirmation Card</p>
+          <h2 id="affirm-title">A small truth to hold.</h2>
+          <p>Click the card to turn it over. Draw a new one whenever the words have done their work.</p>
+          <button class="btn btn-primary" id="nextAffirmation" type="button">Next Card</button>
+        </div>
+
+        <div class="card-stack" aria-live="polite">
+          <button class="flip-card" id="affirmationCard" type="button" aria-label="Flip affirmation card">
+            <span class="flip-card-inner">
+              <span class="flip-card-face card-front">
+                <span class="moon-symbol">✦</span>
+                <span class="pattern-lines" aria-hidden="true"></span>
+              </span>
+              <span class="flip-card-face card-back">
+                <span id="affirmationText">You are not your thoughts. You are the one who notices them.</span>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tips" aria-labelledby="tips-title">
+      <div class="section-inner">
+        <div class="section-heading centered">
+          <p class="eyebrow">Stress Relief Tips</p>
+          <h2 id="tips-title">Tiny resets. Real relief.</h2>
+        </div>
+
+        <div class="tips-grid">
+          <article class="tip-card glass-card">
+            <span>🫁</span>
+            <h3>Box Breathing</h3>
+            <p>Inhale 4s, hold 4s, exhale 4s, hold 4s. Let the square hold your attention.</p>
+          </article>
+          <article class="tip-card glass-card">
+            <span>🖐️</span>
+            <h3>5-4-3-2-1 Grounding</h3>
+            <p>Name 5 things you see, 4 you hear, 3 you feel, 2 you smell, and 1 you taste.</p>
+          </article>
+          <article class="tip-card glass-card">
+            <span>💧</span>
+            <h3>Cold Water Reset</h3>
+            <p>Splash cold water on your face to trigger the dive reflex and calm your nervous system.</p>
+          </article>
+          <article class="tip-card glass-card">
+            <span>📵</span>
+            <h3>Phone Detox Micro-break</h3>
+            <p>Put your phone face down for 10 minutes. Your nervous system will thank you.</p>
+          </article>
+          <article class="tip-card glass-card">
+            <span>🚶</span>
+            <h3>Movement Reset</h3>
+            <p>Even a 5-minute walk changes brain chemistry. Start with the next step.</p>
+          </article>
+          <article class="tip-card glass-card">
+            <span>✍️</span>
+            <h3>Brain Dump</h3>
+            <p>Write every stressful thought down. Externalizing it removes some of its power.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section streak-section" id="streak" aria-labelledby="streak-title">
+      <div class="section-inner">
+        <div class="streak-card glass-card">
+          <p class="eyebrow">Daily Check-in</p>
+          <h2 id="streak-title">Day <span id="streakNumber">1</span> of managing stress</h2>
+          <p id="streakMessage">Every journey starts somewhere. Welcome.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="section-inner">
+      <p>serenova — made for the ones who feel too much</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
